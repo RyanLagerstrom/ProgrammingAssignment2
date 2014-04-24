@@ -10,8 +10,8 @@ makeCacheMatrix <- function(x = matrix()) {
   
     # function for setting the matrix
     set <- function(y) {
-      x <<- y
-      inv <<- NULL
+        x <<- y
+        inv <<- NULL
     }
   
     # function for retrieving the matrix
@@ -43,8 +43,8 @@ cacheSolve <- function(x, ...) {
   
     # if inverse is not null it is returned from cache
     if(!is.null(inv)) {
-      message("getting cached data")
-      return(inv)
+        message("getting cached data")
+        return(inv)
     }
   
     # if we reached here, get the matrix,
