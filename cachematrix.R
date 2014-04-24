@@ -5,28 +5,28 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   
-  # initiate an object for storing the inverse
-  inv <- NULL 
+    # initiate an object for storing the inverse
+    inv <- NULL 
   
-  # function for setting the matrix
-  set <- function(y) {
-    x <<- y
-    inv <<- NULL
-  }
+    # function for setting the matrix
+    set <- function(y) {
+      x <<- y
+      inv <<- NULL
+    }
   
-  # function for retrieving the matrix
-  get <- function() x
+    # function for retrieving the matrix
+    get <- function() x
   
-  # function for setting the inverse
-  # and saving to cache
-  setinv <- function(solve) inv <<- solve
-  
-  # function for retrieving the inverse
-  getinv <- function() inv
-  
-  list(set = set, get = get,
-       setinv = setinv,
-       getinv = getinv)
+    # function for setting the inverse
+    # and saving to cache
+    setinv <- function(solve) inv <<- solve
+    
+    # function for retrieving the inverse
+    getinv <- function() inv
+    
+    list(set = set, get = get,
+         setinv = setinv,
+         getinv = getinv)
 }
 
 
@@ -36,21 +36,22 @@ makeCacheMatrix <- function(x = matrix()) {
 ## unchanged), the function retrives the inverse from cache.
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
+    ## Return a matrix that is the inverse of 'x'
   
-  # retrive the inverse
-  inv <- x$getinv()
+    # retrive the inverse
+    inv <- x$getinv()
   
-  # if inverse is not null it is returned from cache
-  if(!is.null(inv)) {
-    message("getting cached data")
-    return(inv)
-  }
+    # if inverse is not null it is returned from cache
+    if(!is.null(inv)) {
+      message("getting cached data")
+      return(inv)
+    }
   
-  # if we reached here, get the matrix,
-  # compute it's inverse and save it to cache
-  data <- x$get()
-  inv <- solve(data, ...)
-  x$setinv(inv)
-  inv
+    # if we reached here, get the matrix,
+    # compute it's inverse and save it to cache
+    data <- x$get()
+    inv <- solve(data, ...)
+    x$setinv(inv)
+
+    inv
 }
